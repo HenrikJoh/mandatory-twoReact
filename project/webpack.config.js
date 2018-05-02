@@ -23,7 +23,7 @@ module.exports = env => ({
   devServer: {
     watchContentBase: true,
     contentBase: path.resolve(__dirname, "output"),
-    port: 3000,
+    port: 3002,
   },
   plugins: [
     new WebpackNotifierPlugin({alwaysNotify: true}),

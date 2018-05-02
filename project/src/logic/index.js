@@ -31,7 +31,7 @@ The newGame function will return a valid new game object.
 */
 export const newGame = () => ({
   player: 'plr1',
-  board: [0,0,0,0,0,0,0,0,0],
+  board: [1,2,0,0,0,0,0,0,0],
   line: []
 });
 
@@ -51,7 +51,7 @@ export const makeMove = (game, pos) => {
   const newBoard = game.board.map((tile,index) => pos === index ? currentPlayer : tile);
   const updateGameState = {player: player === 'plr1' ? 'plr2' : 'plr1', board: newBoard, line:[]}
 
-  return updateGameState 
+  return updateGameState; 
 
 }
 

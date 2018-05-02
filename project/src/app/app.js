@@ -27,8 +27,13 @@ export default class App extends React.Component {
     }
   }
 
+
   playerMove(index){
     console.log(index);
+
+     this.setState({
+      game: makeMove()
+    }); 
   }
 
   startNewGame() {
@@ -41,6 +46,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
+      <Message player={this.state.game.player}/>
         <div className="board">
           {this.state.game.board.map((tile, index) => (
             <Tile key={index} value={tile} move={() => this.playerMove(index)}/>
