@@ -31,7 +31,7 @@ The newGame function will return a valid new game object.
 */
 export const newGame = () => ({
   player: 'plr1',
-  board: [1,2,0,0,0,0,0,0,0],
+  board: [0, 0, 0, 0, 0, 0, 0, 0, 0],
   line: []
 });
 
@@ -46,13 +46,26 @@ an unchanged game will be returned.
 */
 
 export const makeMove = (game, pos) => {
-  // ...to be implemented!
+  // ...to be implemented
+  if(game.line.length > 0) {
+    return game;
+  }
+  if (game.board[pos] !== 0) {
+    return game;
+  }
+
   const currentPlayer = game.player === 'plr1' ? 1 : 2;
-  const newBoard = game.board.map((tile,index) => pos === index ? currentPlayer : tile);
-  const updateGameState = {player: player === 'plr1' ? 'plr2' : 'plr1', board: newBoard, line:[]}
+  const winPatterns = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
-  return updateGameState; 
+  const newBoard = game.board.map((tile, index) => pos === index ? currentPlayer : tile);
 
+  const pattern = winPatterns.find(path => path.every(value => newBoard[value] === currentPlayer));
+
+  const updateGameState = { 
+    player: game.player === 'plr1' ? 'plr2' : 'plr1', 
+    board: newBoard, 
+    line: pattern || []
+  }
+
+  return updateGameState;
 }
-
-export const winPatterns = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];

@@ -16,15 +16,13 @@ The tile should render with the classes...
 
 import React from 'react';
 
-
-
-
 export default function Tile(props){
 
-const tileClass = props.value === 1 ? "tile plr1" : props.value === 2 ? "tile plr2" : "tile";
-
+const tileClass = props.value === 1 ? "plr1" : props.value === 2 ? "plr2" : "";
+const win =   props.win === true ?  "line" : ""
 const tileText = props.value === 1 ? "X" : props.value === 2 ? "O" : null;
+
   return (
-    <div className={tileClass} onClick={() => props.move()}>{tileText}</div>
+    <div className={`tile ${tileClass} ${win}`} onClick={() => props.move()}>{tileText}</div>
   );
 }

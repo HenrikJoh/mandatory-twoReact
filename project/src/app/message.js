@@ -7,8 +7,26 @@ The component will then render an appropriate message.
 
 import React from 'react';
 
+
+
 export default function Message(props){
+  const draw = props.game.board.includes(0);
+
+let text;
+
+if(props.game.player === 'plr1') {
+  text = 'Player 1 turn';
+} if (props.game.player === 'plr2') {
+  text = 'Player 2 turn';
+}  if (draw === false) {
+  text = 'Draw';
+} if (props.game.line.length > 0 && props.game.player === 'plr1') {
+  text = 'Player 2 won';
+} if (props.game.line.length > 0 && props.game.player === 'plr2') {
+  text = 'Player 1 won';
+} 
+
   return (
-    <div>{props.player === 'plr1' ? "Player 1" : "Player 2"} turn</div>
+    <div>{text}</div>
   );
 }

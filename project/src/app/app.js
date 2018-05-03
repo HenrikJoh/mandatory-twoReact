@@ -29,10 +29,9 @@ export default class App extends React.Component {
 
 
   playerMove(index){
-    console.log(index);
-
+      const newState = makeMove(this.state.game, index);
      this.setState({
-      game: makeMove()
+      game: newState
     }); 
   }
 
@@ -40,20 +39,19 @@ export default class App extends React.Component {
     this.setState({
       game: newGame()
     });
-    console.log('new game');
   }
 
   render() {
     return (
-      <div className="container">
-      <Message player={this.state.game.player}/>
+      <div>
+      <Message game={this.state.game} />
         <div className="board">
           {this.state.game.board.map((tile, index) => (
-            <Tile key={index} value={tile} move={() => this.playerMove(index)}/>
+            <Tile key={index} value={tile} move={() => this.playerMove(index)} win={this.state.game.line.includes(index)}/>
           ))}
-          <button onClick={() => this.startNewGame()}>Reset</button>
+          
         </div>
-        
+        <button onClick={() => this.startNewGame()}>Reset</button>
       </div> 
     );
   }
